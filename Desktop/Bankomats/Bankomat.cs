@@ -26,8 +26,7 @@ namespace Desktop.Bankomats
 
         private void CheckSelected_Sh(object? sender, EventArgs e)
         {
-            Task task = Task.Run(() =>
-            {
+         
                 _tanlangan = shifokorlar.Where(sh => sh.IsSelected == true)
                             .OrderByDescending(sh => sh.SelectedTime)
                             .FirstOrDefault();
@@ -39,7 +38,7 @@ namespace Desktop.Bankomats
                 {
                     tanlanganSh.Text = "";
                 }
-            });
+           
         }
 
         private async void guna2Button1_Click(object sender, EventArgs e)
@@ -77,13 +76,12 @@ namespace Desktop.Bankomats
 
         private void Bankomat_Load(object sender, EventArgs e)
         {
-            Task task = Task.Run(() =>
-            {
+          
                 Timer timer1 = new();
                 timer1.Interval = 1000;
                 timer1.Tick += guna2Button1_Click;
                 timer1.Start();
-            });
+         
 
         }
 
