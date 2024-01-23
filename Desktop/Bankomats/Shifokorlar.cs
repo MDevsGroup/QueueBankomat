@@ -1,4 +1,4 @@
-﻿using DataAccesLayer.Models;
+﻿using DataAccesLayer.Repositories;
 using DataAccesLayer.Repository;
 
 namespace Desktop.Bankomats;
@@ -6,22 +6,30 @@ namespace Desktop.Bankomats;
 
 public partial class Shifokorlar : UserControl
 {
-    public int UserId { get; set; }
+    private readonly IUserInterface _userInterface;
+    private readonly IClientInterface _clientInterface;
 
-    public string Fullname { get; set; }
+    public int UserId { get; set; }
     public bool IsSelected { get; set; }
+    public string FullName { get; set; } = string.Empty;   
     public DateTime SelectedTime { get; set; }
 
-    public Shifokorlar(int userId, string fullName)
+    public Shifokorlar(int userId, string fullName, IUserInterface userInterface, IClientInterface clientInterface)
     {
         InitializeComponent();
         this.UserId = userId;
-        this.Fullname = fullName;
+        _userInterface = userInterface;
+        _clientInterface = clientInterface;
+        FullName = fullName;
     }
 
-    private void Shifokorlar_Load(object sender, EventArgs e)
+    private async void Shifokorlar_Load(object sender, EventArgs e)
     {
-        Ism.Text = Fullname;
+        var users = await _userInterface.GetOnlineUsers();
+        var user = users.FirstOrDefault(i => i.Id == UserId);
+        Ism.Text = user.FirstName + " " + user.LastName;
+        level.Text = user.Lavozimi;
+        count.Text = _clientInterface.CountAllClient(UserId).ToString();
     }
 
     private void guna2Panel1_Click(object sender, EventArgs e)

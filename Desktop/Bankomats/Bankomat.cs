@@ -30,7 +30,7 @@ namespace Desktop.Bankomats
                                        .FirstOrDefault();
             if (tanlangan != null)
             {
-                tanlanganSh.Text = $"Tanlandi: {tanlangan.Fullname}";
+                tanlanganSh.Text = $"Tanlandi: {tanlangan.FullName}";
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Desktop.Bankomats
 
                 foreach (var user in users)
                 {
-                    Shifokorlar shifokor = new Shifokorlar(user.Id, $"{user.FirstName} {user.LastName}");
+                    Shifokorlar shifokor = new Shifokorlar(user.Id, $"{user.FirstName} {user.LastName}", _userInterface, _clientInterface);
 
 
                     Timer timer2 = new();
