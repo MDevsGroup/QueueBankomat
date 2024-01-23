@@ -62,7 +62,7 @@ namespace Desktop.Bankomats
 
 
                     Timer timer2 = new();
-                    timer2.Interval = 500;
+                    timer2.Interval = 5000;
                     timer2.Tick += CheckSelected_Sh;
                     timer2.Start();
                     MainPanel.Controls.Add(shifokor);
