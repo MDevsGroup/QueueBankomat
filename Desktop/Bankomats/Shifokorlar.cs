@@ -25,7 +25,11 @@ public partial class Shifokorlar : UserControl
 
     private async void Shifokorlar_Load(object sender, EventArgs e)
     {
-        FormLoad();
+        Task task = Task.Run(() =>
+        {
+            FormLoad();
+
+        });
     }
 
     private void guna2Panel1_Click(object sender, EventArgs e)
