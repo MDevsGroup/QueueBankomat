@@ -3,21 +3,7 @@ using DataAccesLayer.Repository;
 
 namespace Desktop.Bankomats;
 
-//public partial class Shifokorlar : UserControl
-//{
-//    public Shifokorlar(User user,
-//                       int clientCount)
-//    {
-//        InitializeComponent();
-//        Ism.Text = user.FirstName + " " + user.LastName;
-//        level.Text = user.Lavozimi;
-//        count.Text = clientCount.ToString();
-//    }
-//}
 
-
-
-// Shifokorlar UserControl
 public partial class Shifokorlar : UserControl
 {
     public int UserId { get; set; }

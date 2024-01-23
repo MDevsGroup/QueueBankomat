@@ -1,35 +1,4 @@
-﻿//using DataAccesLayer.Repositories;
-//using DataAccesLayer.Repository;
-
-//namespace Desktop.Bankomats;
-
-//public partial class Bankomat : Form
-//{
-//    private readonly IUserInterface _userInterface;
-//    private readonly IClientInterface _clientInterface;
-
-//    public Bankomat(IUserInterface userInterface,
-//                    IClientInterface clientInterface)
-//    {
-//        InitializeComponent();
-//        _userInterface = userInterface;
-//        _clientInterface = clientInterface;
-//    }
-
-//    private async void guna2Button1_Click(object sender, EventArgs e)
-//    {
-//        var users = await _userInterface.GetOnlineUsers(); 
-//        var clientCount = await _clientInterface.CountAllClient()
-
-//        MainPanel.Controls.Clear();
-//        foreach (var user in users)
-//        {
-//            Shifokorlar shifokorlar = new Shifokorlar();
-//            MainPanel.Controls.Add(shifokorlar);
-//        }
-//    }
-//}
-
+﻿
 
 // Bankomat Form
 using DataAccesLayer.Models;
