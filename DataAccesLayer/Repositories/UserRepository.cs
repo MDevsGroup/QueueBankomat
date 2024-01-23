@@ -10,13 +10,13 @@ public class UserRepository(AppDbContext dbContext) : IUserInterface
 
     public async Task<List<User>> GetAllUsers()
     {
-        var users = await _dbContext.Users.ToListAsync();
+        var users = await _dbContext.Users.AsNoTracking().ToListAsync();
         return users;
     }
 
     public async Task<List<User>> GetOnlineUsers()
     {
-        var onlineUsers = await _dbContext.Users.Where(i => i.IsOnline == true).ToListAsync();
+        var onlineUsers = await _dbContext.Users.AsNoTracking().Where(i => i.IsOnline == true).ToListAsync();
         return onlineUsers;
     }
 }

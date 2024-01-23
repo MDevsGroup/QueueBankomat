@@ -32,9 +32,10 @@ public static class Program
 
         services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(connectionString, o => o.EnableRetryOnFailure()), ServiceLifetime.Transient, ServiceLifetime.Transient);
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         services.AddTransient<IClientInterface, ClientRepository>();
         services.AddTransient<IUserInterface, UserRepository>();
-        services.AddScoped<Bankomat>();
+        services.AddTransient<Bankomat>();
 
     }
 

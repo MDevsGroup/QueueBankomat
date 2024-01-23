@@ -9,9 +9,10 @@ public class ClientRepository(AppDbContext dbContext) : IClientInterface
 {
     private readonly AppDbContext _dbContext = dbContext;
 
-    public async Task Create(DateTime created)
+    public async Task Create(int userId, DateTime created)
     {
-        Client client = new Client() { CreatedDate = created};
+        Client client = new Client() { UserId = userId, CreatedDate = created};
+        client.User = null;
         await _dbContext.Clients.AddAsync(client);
         await _dbContext.SaveChangesAsync();
     }
@@ -25,7 +26,7 @@ public class ClientRepository(AppDbContext dbContext) : IClientInterface
 
     public int CountAllClient(int userid)
     {
-        var clients = _dbContext.Clients.Where(i => i.Id == userid).ToList();
+        var clients = _dbContext.Clients.AsNoTracking().Where(i => i.Id == userid).ToList();
         return clients.Count();
     }
 }

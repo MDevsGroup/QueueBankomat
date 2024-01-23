@@ -5,6 +5,6 @@ namespace DataAccesLayer.Repository;
 public interface IClientInterface
 {
     int CountAllClient(int userId);
-    Task Create(DateTime created);
+    Task Create(int userId, DateTime created);
     Task DeleteAsync(int id);
 }

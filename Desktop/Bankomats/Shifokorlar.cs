@@ -25,16 +25,22 @@ public partial class Shifokorlar : UserControl
 
     private async void Shifokorlar_Load(object sender, EventArgs e)
     {
-        var users = await _userInterface.GetOnlineUsers();
-        var user = users.FirstOrDefault(i => i.Id == UserId);
-        Ism.Text = user.FirstName + " " + user.LastName;
-        level.Text = user.Lavozimi;
-        count.Text = _clientInterface.CountAllClient(UserId).ToString();
+        FormLoad();
     }
 
     private void guna2Panel1_Click(object sender, EventArgs e)
     {
         IsSelected = true;
         SelectedTime = DateTime.Now;
+    }
+
+
+    private async void FormLoad()
+    {
+        var users = await _userInterface.GetOnlineUsers();
+        var user = users.FirstOrDefault(i => i.Id == UserId);
+        Ism.Text = user.FirstName + " " + user.LastName;
+        level.Text = user.Lavozimi;
+        count.Text = _clientInterface.CountAllClient(UserId).ToString();
     }
 }

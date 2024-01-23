@@ -15,6 +15,7 @@ namespace Desktop.Bankomats
         private int SelectedUserId;
         private List<Shifokorlar> shifokorlar = new();
         private List<User> _users = new();
+        private Shifokorlar _tanlangan;
 
         public Bankomat(IUserInterface userInterface, IClientInterface clientInterface)
         {
@@ -25,12 +26,12 @@ namespace Desktop.Bankomats
 
         private void CheckSelected_Sh(object? sender, EventArgs e)
         {
-            var tanlangan = shifokorlar.Where(sh => sh.IsSelected == true)
+            _tanlangan = shifokorlar.Where(sh => sh.IsSelected == true)
                                        .OrderByDescending(sh => sh.SelectedTime)
                                        .FirstOrDefault();
-            if (tanlangan != null)
+            if (_tanlangan != null)
             {
-                tanlanganSh.Text = $"Tanlandi: {tanlangan.FullName}";
+                tanlanganSh.Text = $"Tanlandi: {_tanlangan.FullName}";
             }
             else
             {
@@ -77,6 +78,12 @@ namespace Desktop.Bankomats
             timer1.Interval = 1000;
             timer1.Tick += guna2Button1_Click;
             timer1.Start();
+        }
+
+        private async void NavbatBtn_Click(object sender, EventArgs e)
+        {
+            _tanlangan.IsSelected = false;
+            await _clientInterface.Create(_tanlangan.UserId, DateTime.Now);
         }
     }
 }

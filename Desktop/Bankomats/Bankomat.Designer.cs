@@ -130,6 +130,7 @@
             NavbatBtn.Size = new Size(257, 59);
             NavbatBtn.TabIndex = 0;
             NavbatBtn.Text = "Navbatni olish";
+            NavbatBtn.Click += NavbatBtn_Click;
             // 
             // MainPanel
             // 
